@@ -24,19 +24,16 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| user_id            | integer    | null: false                    |
 | post_code          | string     | null: false                    |
 | prefecture_id      | integer    | null: false                    |
 | city               | string     | null: false                    |
 | address            | string     | null: false                    |
 | building_name      | string     |                                |
 | phone_number       | string     | null: false                    |
-| item_purchase      | integer    | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :item_purchase
 
 ## item_purchases テーブル
 
@@ -49,7 +46,7 @@
 
 - belongs_to :user
 - belongs_to :product
-- has_many :purchaser
+- belongs_to :purchaser
 
 ## products テーブル
 
@@ -62,10 +59,10 @@
 | cost_id            | integer    | null: false                    |
 | days_id            | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                    |
-| category_id        | references | null: false, foreign_key: true |
+| category           | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :item_purchase
+- belongs_to :item_purchase
