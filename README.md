@@ -30,10 +30,11 @@
 | address            | string     | null: false                    |
 | building_name      | string     |                                |
 | phone_number       | string     | null: false                    |
+| item_purchase      | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
+- belongs_to :item_purchase
 
 ## item_purchases テーブル
 
@@ -46,7 +47,7 @@
 
 - belongs_to :user
 - belongs_to :product
-- belongs_to :purchaser
+- has_one :purchaser
 
 ## products テーブル
 
@@ -59,10 +60,10 @@
 | cost_id            | integer    | null: false                    |
 | days_id            | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                    |
-| category           | integer    | null: false                    |
+| category_id        | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :item_purchase
+- has_one :item_purchase
