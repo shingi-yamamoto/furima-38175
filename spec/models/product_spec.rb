@@ -71,23 +71,21 @@ RSpec.describe Product, type: :model do
       @product.valid?
       expect(@product.errors.full_messages).to include "Image can't be blank"
     end
-    # 11.価格に半角数字以外が含まれている場合は登録できない
-    it "is invalid without a price" do
-      @product.price = nil
+    it "価格に半角数字以外が含まれている場合は登録できない" do
+      @product.price = "あ"
       @product.valid?
-      expect(@product.errors.full_messages).to include "Price can't be blank"
+      expect(@product.errors.full_messages).to include "Price should be half-width numbers"
     end
-    # 12.価格が300円未満では登録できない
-    it "is invalid without a image" do
-      @product.price = nil
+    it "価格が300円未満では登録できない" do
+      @product.price = "250円"
       @product.valid?
-      expect(@product.errors.full_messages).to include "Price can't be blank"
+      expect(@product.errors.full_messages).to include "Price is not a number"
     end
-    # 13.価格が9_999_999円を超えると登録できない
-    it "is invalid without a price" do
-      @product.price = nil
+    # 13.価格が
+    it "9_999_999円を超えると登録できない" do
+      @product.price = "10_000_000円"
       @product.valid?
-      expect(@product.errors.full_messages).to include "Price can't be blank"
+      expect(@product.errors.full_messages).to include "Price is not a number"
     end
     # 14.userが紐付いていなければ登録できない
     it "is invalid without a user" do
