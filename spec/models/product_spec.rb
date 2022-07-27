@@ -27,35 +27,35 @@ RSpec.describe Product, type: :model do
 
     # 4.category_idが「---」が選択されている場合は登録できない
     it "is invalid without a category_id" do
-      @product.category_id = '---'
+      @product.category_id = '0'
       @product.valid?
       expect(@product.errors.full_messages).to include "Category can't be blank"
     end
 
     # 5.status_idが「---」が選択されている場合は登録できない
     it "is invalid without a status_id" do
-      @product.status_id = '---'
+      @product.status_id = '0'
       @product.valid?
       expect(@product.errors.full_messages).to include "Status can't be blank"
     end
 
     # 6.cost_idが「---」が選択されている場合は登録できない
     it "is invalid without a cost_id" do
-      @product.cost_id = '---'
+      @product.cost_id = '0'
       @product.valid?
       expect(@product.errors.full_messages).to include "Cost can't be blank"
     end
 
     # 7.prefecture_idが「---」が選択されている場合は登録できない
     it "is invalid without a prefecture_id" do
-      @product.prefecture_id = '---'
+      @product.prefecture_id = '0'
       @product.valid?
       expect(@product.errors.full_messages).to include "Prefecture can't be blank"
     end
 
     # 8.delivery_days_idが「---」が選択されている場合は登録できない
     it "is invalid without a delivery_days_id" do
-      @product.delivery_days_id = '---'
+      @product.delivery_days_id = '0'
       @product.valid?
       expect(@product.errors.full_messages).to include "Delivery days can't be blank"
     end
@@ -77,13 +77,13 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include "Price should be half-width numbers"
     end
     it "価格が300円未満では登録できない" do
-      @product.price = "250円"
+      @product.price = "250"
       @product.valid?
       expect(@product.errors.full_messages).to include "Price is not a number"
     end
     # 13.価格が
     it "9_999_999円を超えると登録できない" do
-      @product.price = "10_000_000円"
+      @product.price = "10_000_000"
       @product.valid?
       expect(@product.errors.full_messages).to include "Price is not a number"
     end
