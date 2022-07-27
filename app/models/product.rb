@@ -15,7 +15,7 @@ class Product < ApplicationRecord
 
   # テーブルとのアソシエーション
   belongs_to :user
-  #has_one :item_purchase
+  has_one :item_purchase
 
   # アクティブハッシュとのアソシエーション
   belongs_to :category
