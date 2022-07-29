@@ -24,6 +24,7 @@ end
 
 def edit
   @product = Product.find(params[:id])
+  redirect_to root_path unless current_user == @product.user
 end
 
 def update
