@@ -27,11 +27,11 @@ def edit
 end
 
 def update
-  product = Product.find(params[:id])
-  if product.update(product_params)
-  redirect_to product_path, notice: ''
+  @product = Product.find(params[:id])
+  if @product.update (product_params)
+  redirect_to product_path(@product)
     else
-      render 'edit'
+      render :edit
   end
 end
   private
