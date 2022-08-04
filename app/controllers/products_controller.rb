@@ -23,7 +23,9 @@ def show
 end
 
 def edit
-  redirect_to root_path unless current_user == @product.user
+  if @product.user_id == current_user.id || @product_purchase != nil
+    redirect_to root_path
+  end
 end
 
 def update

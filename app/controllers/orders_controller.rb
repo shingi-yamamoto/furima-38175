@@ -34,5 +34,6 @@ private
 
   def set_product_purchase
     @product = Product.find(params[:product_id])
+    redirect_to root_path if current_user.id == @product.user_id || @product.order.present?
   end
 end
