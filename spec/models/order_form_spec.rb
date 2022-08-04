@@ -58,10 +58,10 @@ describe '配送先情報の保存' do
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include("Post code is invalid", "Post code is the wrong length (should be 8 characters)")
     end
-    it '都道府県が空だと保存できないこと' do
-      @order_form.prefecture_id = nil
+    it '都道府県が1以上のidが選択されないと保存できないこと' do
+      @order_form.prefecture_id = 0
       @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Prefecture can't be blank")
+      expect(@order_form.errors.full_messages).to include("Prefecture must be other than 0")
     end
     it '市区町村が空だと保存できないこと' do
       @order_form.city = nil
@@ -85,6 +85,11 @@ describe '配送先情報の保存' do
     end
     it '電話番号が12桁以上あると保存できないこと' do
       @order_form.phone_number = 12_345_678_910_123_111
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include('Phone number is invalid')
+    end
+    it '電話番号が9桁以下では保存できないこと' do
+      @order_form.phone_number = 12_345
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include('Phone number is invalid')
     end
