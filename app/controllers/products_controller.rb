@@ -23,7 +23,8 @@ def show
 end
 
 def edit
-  if @product.user_id == current_user.id || @product_purchase != nil
+  if @product.user_id == current_user.id && @product.order.nil?
+  else
     redirect_to root_path
   end
 end
